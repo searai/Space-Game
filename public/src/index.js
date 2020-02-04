@@ -1,5 +1,5 @@
 import Phaser from "phaser"
-import MainScene from "./mainScene.js"
+import MainScene from "../mainScene.js"
 import PauseScene from "./pauseScene.js"
 import OpeningScene from "./openingScene.js"
 import GameOverScene from "./gameOverScene.js"
