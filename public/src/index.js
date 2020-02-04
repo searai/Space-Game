@@ -1,8 +1,8 @@
 import Phaser from "phaser"
-import MainScene from "./mainScene.js"
-import PauseScene from "./pauseScene.js"
-import OpeningScene from "./openingScene.js"
-import GameOverScene from "./gameOverScene.js"
+import MainScene from "./scenes/mainScene.js"
+import PauseScene from "./scenes/pauseScene.js"
+import OpeningScene from "./scenes/openingScene.js"
+import GameOverScene from "./scenes/gameOverScene.js"
 import "./menu.js"
 import "./highScore.js"
 
@@ -30,3 +30,4 @@ const config = {
 
 new Phaser.Game(config);
 
+//this is the master branch
