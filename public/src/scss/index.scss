@@ -1,0 +1,31 @@
+@import "nav.scss";
+@import "register.scss";
+@import "profile.scss";
+@import "login.scss";
+@import "highScore.scss";
+@import "game.scss";
+
+body{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+    .error-container{
+        height:50px;
+    }
+    .errors{
+        color:red;
+    }
+
+    .submit-container{
+        text-align: center;
+    }
+    .submit{
+        margin: 0 auto;
+        padding:5px;
+        font-size: 20px;
+        font-family: inherit;
+        margin-right:20px;  
+    }
+   
+
+}
+

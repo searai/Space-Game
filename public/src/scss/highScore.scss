@@ -1,0 +1,30 @@
+
+$width:800px;
+
+#highscore{
+    display:none;
+    margin-top:50px;
+    width:$width;
+    margin: 0 auto;
+    #title, #scores{
+        display:flex;
+        font-size: 40px;
+    
+        .ranking{
+            width: 2*$width/8;
+            text-align: center;
+        }
+        .user, .score{
+            width: 3*$width/8;
+            text-align: center;
+        }
+    }
+    #scores{
+        font-size: 20px;
+    }
+
+}
+
+
+
+

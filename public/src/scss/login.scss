@@ -1,0 +1,15 @@
+#login{
+    position: relative;
+    top:10px;
+    display: none;
+    border:2px black solid;
+    width:200px;
+    padding:20px;
+    height:230px;
+    margin: 0 auto;
+
+    .error-email-login-server, .error-password-login-server, 
+    .error-attempts-server{
+        display: none;
+    }
+}

@@ -1,33 +1,24 @@
-import Phaser from "phaser"
-import MainScene from "./scenes/mainScene.js"
-import PauseScene from "./scenes/pauseScene.js"
-import OpeningScene from "./scenes/openingScene.js"
-import GameOverScene from "./scenes/gameOverScene.js"
-import "./menu.js"
-import "./highScore.js"
+import "./scss/index.scss"
 
+import "./components/navigationBar.js"
+import "./components/login.js"
+import "./components/register.js"
+import "./game.js"
+import {getAllScores} from "./components/highScore.js"
 
-const config = {
-    type: Phaser.AUTO,
-    width: 1024,
-    height: 800,
-    parent: "game",
-    physics:{
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 0 },
-            debug: false
-            }
-       },
-    scene:[
-        OpeningScene,
-        PauseScene,
-        MainScene,
-        GameOverScene,
-    ]
+function created(){
+
+    // getAllScores().then(scores=>{
+    //     scores.forEach(score=>console.log(score))
+    // })
+    
+    const highScoreContainer = document.querySelector("#score-container")
+    const templateHighScore = document.querySelector("#highscore-template")
+    const highScoreNode = templateHighScore.content.cloneNode(true)
+    highScoreNode.querySelector(".ranking").innerHTML = 1
+    highScoreNode.querySelector(".user").innerHTML = "John"
+    highScoreNode.querySelector(".score").innerHTML = 100
+    highScoreContainer.appendChild(highScoreNode)
 }
 
-
-new Phaser.Game(config);
-
-//this is the master branch
+created()

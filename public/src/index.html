@@ -3,27 +3,125 @@
         <title><%= htmlWebpackPlugin.options.title %></title>
     </head>
     <body>
-        <div id = "navigation">
-            <button id = "displayGame">Game</button>
-            <button id = "displayHighScores">HighScores</button>
-        </div>
-        <div id = "game"></div>
-        <div id = "highScore"></div>
-        <button id = "test">Cick me</button>
-        <div id = "comments"></div>
-        <div id = "login"></div>
-        <div id = "register"></div>
-      
-        <template id = "highScoreTemplate">
-            <div>
-                <div id = "user"></div>
-                <div id = "score"></div>
+        <nav>
+            <button id = "display-game">Game</button>
+            <button id = "display-highscores">Highscores</button>
+            <button id = "display-register">Register</button>
+            <button id = "display-login">Login</button>
+            <div id = "profile-dropdown">
+                <img id = "profile-image">
+                <div id = "content">
+                    <div class = "profile-links" id = "display-profile">Profile</div>
+                    <div class = "profile-links" id = "logout" >Logout</div>
+                </div>
             </div>
-        </template>
+        </nav>
+        <div id = "game"></div>
+        <div id = "highscore">
+            <div id = "title">
+                <div class = "ranking">Ranking</div>
+                <div class = "user">User</div>
+                <div class = "score">Score</div>
+            </div>
+            <div id = "score-container">         
+            </div>
+
+            <template id = "highscore-template">
+                <div id = "scores">
+                    <div class = "ranking"></div>
+                    <div class = "user"></div>
+                    <div class = "score"></div>
+                </div>
+            </template>
+
+        </div>
+
+        <div id = "comments">
+              
+            <template id = "commentTemplate">
+               
+            </template>
+        </div>
+        <div id = "login">
+            <div>
+                <label>Email</label><br>
+                <input type="text" id = "email-login"> 
+                <div class = "error-container">
+                    <div class = "errors error-email-login" >Invalid format</div> 
+                    <div class = "errors error-email-login-server" >That email does not exist</div> 
+                </div>
+            </div>
+
+            <div>
+                <label>Password</label><br>
+                <input type="password" id = "password-login"> 
+                <div class = "error-container">
+                    <div class = "errors error-password-login-server" >Incorrect Password</div>
+                    <div class = "errors error-attempts-server">Too many login attempts please wait</div>
+                </div>
+            </div>
+     
+            <div class = "submit-container"> 
+                <button class = "submit submit-login">Submit</button>
+            </div>
+        </div>
+
+
+        <div id = "register">
+            <div>
+                <label>Username</label> <br>
+                <input type="text" id = "username"> 
+                <div class = "error-container">
+                    <div class = "errors error-username" >Must be at least 6 characters long</div>
+                    <div class = "errors error-username-server" >That user already exists</div>
+                </div>
+            </div>
+  
+            <div>
+                <label>Email</label><br>
+                <input type="text" id = "email-register"> 
+                <div class = "error-container">
+                    <div class = "errors error-email-register" >Invalid format</div> 
+                    <div class = "errors error-email-register-server" >That email already exists</div> 
+                </div>
+            </div>
+     
+            <div>
+                <label>Password</label><br>
+                <input type="password" id = "password-register"> 
+                <div class = "error-container">
+                    <div class = "errors error-password-register" >Must be at least 6 characters long</div>
+                    <div class = "errors error-password-register" >Must contain letters and numbers</div>
+                </div>
+            </div>
+
+            <div>
+                <label>Confirm Password</label><br>
+                <input type="password" id = "confirmPassword">
+                <div class = "error-container">
+                    <div class = "errors error-confirm-password" >Passwords must match</div>
+                </div>
+            </div>
+
+            <div class = "submit-container">
+                <button class = "submit submit-register">Submit</button>
+            </div> 
         
-        <template id = "commentTemplate">
-            	
-        </template>
-    
+        </div>
+        
+        <div id = "profile"> 
+            <div>
+                <label>Username</label> <br>
+                <input type="text" id = "profile-username" readonly>
+            </div>
+            <br>
+            <div>
+                <label>Email</label>
+                <input type="text" id = "profile-email" readonly>
+            </div> 
+        </div>
+
+            
+      
     </body>
 </html>

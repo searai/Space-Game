@@ -1,0 +1,54 @@
+nav{
+    position: relative;
+    background-color:blue;
+    height:50px;
+    text-align: center;
+
+    button{
+        height:inherit;
+        margin-left: -5px;
+        background-color: inherit;
+        margin-bottom: 4px;
+        border:none;
+        font-size: 35px;
+        outline:none;
+        font-family:inherit;
+    }
+    #display-game{
+        text-decoration: underline;
+    }
+    button:hover{
+        background-color:white;
+        color:black;
+        position: relative;
+    }
+    #profile-dropdown{
+        position: absolute;
+        top:0px;
+        right:0px;
+        width:100px;
+        height:100%;
+        display:none;
+
+        #content{
+            padding:5px;
+            text-align: center;
+            display:none;   
+        }
+    }
+    
+    #profile-dropdown:hover #content{
+        display:block;
+    }
+    #profile-image{
+        height:100%;
+        width:100%;
+    
+    }
+    .profile-links{
+        margin-top:5px;
+    }
+    .profile-links:hover{
+        text-decoration: underline;
+    }
+}

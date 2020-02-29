@@ -31,7 +31,7 @@ export default class Player extends Physics.Arcade.Sprite{
         let testTopRightForOverLap 
         let testBottomLeftForOverLap
         let testBottomRightForOverLap
-        let overlap 
+        let overlap
 
         this.scene.input.on("pointerdown",(pointer)=>{
             if(!this.teleportCooldown){
@@ -115,6 +115,8 @@ export default class Player extends Physics.Arcade.Sprite{
         }
         
         this.teleport(delta)
+
+        //add logic for managing the cooldown associated with the homing beam
         
     }
 
@@ -130,13 +132,13 @@ export default class Player extends Physics.Arcade.Sprite{
         if(this.teleportCooldown){
             if(this.teleportCooldownTimer > 0){
                 this.teleportCooldownTimer -= timeInterval
+                this.teleportCooldownTimerText.setText((this.teleportCooldownTimer/1000).toFixed(2))
             }else{
                 this.teleportCooldownTimer = 5000
                 this.teleportCooldown = false
                 this.teleportCooldownTimerText.setVisible(false)
                 this.teleportImage.setVisible(false)
             }
-            this.teleportCooldownTimerText.setText((this.teleportCooldownTimer/1000).toFixed(2))
         }
         
     }
