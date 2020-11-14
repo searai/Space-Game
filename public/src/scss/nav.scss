@@ -4,6 +4,12 @@ nav{
     height:50px;
     text-align: center;
 
+    #auth-buttons{
+        height:inherit;
+        position: absolute;
+        right:0px;
+        top:0px;
+    }
     button{
         height:inherit;
         margin-left: -5px;

@@ -1,6 +1,6 @@
 import axios from "../axios.js"
 import validator from "validator"
-import loginUser from "./helperFuntions/loginUser.js"
+import {loginUser} from "./auth.js"
 
 const registerError = {
     userName: true,

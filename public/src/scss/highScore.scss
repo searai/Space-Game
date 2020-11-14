@@ -6,7 +6,7 @@ $width:800px;
     margin-top:50px;
     width:$width;
     margin: 0 auto;
-    #title, #scores{
+    #title, .scores{
         display:flex;
         font-size: 40px;
     
@@ -19,7 +19,11 @@ $width:800px;
             text-align: center;
         }
     }
-    #scores{
+    #title{
+        border-bottom: solid 2px black;
+
+    }
+    .scores{
         font-size: 20px;
     }
 

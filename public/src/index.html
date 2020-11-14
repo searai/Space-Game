@@ -6,8 +6,11 @@
         <nav>
             <button id = "display-game">Game</button>
             <button id = "display-highscores">Highscores</button>
-            <button id = "display-register">Register</button>
-            <button id = "display-login">Login</button>
+            <div id = "auth-buttons">
+                <button id = "display-register">Register</button>
+                <button id = "display-login">Login</button>
+            </div>
+          
             <div id = "profile-dropdown">
                 <img id = "profile-image">
                 <div id = "content">
@@ -16,7 +19,9 @@
                 </div>
             </div>
         </nav>
+
         <div id = "game"></div>
+
         <div id = "highscore">
             <div id = "title">
                 <div class = "ranking">Ranking</div>
@@ -27,7 +32,7 @@
             </div>
 
             <template id = "highscore-template">
-                <div id = "scores">
+                <div class = "scores">
                     <div class = "ranking"></div>
                     <div class = "user"></div>
                     <div class = "score"></div>
@@ -38,7 +43,7 @@
 
         <div id = "comments">
               
-            <template id = "commentTemplate">
+            <template id = "comment-template">
                
             </template>
         </div>
@@ -121,6 +126,10 @@
             </div> 
         </div>
 
+        
+        <div id ="internal-server-error" >
+            <h1>Internal Sever Error</h1>
+        </div>
             
       
     </body>

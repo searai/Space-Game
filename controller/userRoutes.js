@@ -7,56 +7,53 @@ const auth = require("../authenticate.js")
 
 
 
-router.post("/login",(req, res)=>{
+
+router.post("/login",async(req, res)=>{
     const error = {
         email: false,
         password: false,
         attempts: false
     }
-    User.findOne({email : req.body.email})
-    .then((user)=>{
+
+    try{
+        const user = await User.findOne({email : req.body.email})
+
         if(!user){
             error.email = true
-            return res.status(400).json(error)
+            return res.status(400).send(error)
         }
-
+  
         if(Date.now() - user.startTime > 2*60*1000){
             user.loginAttempts = 0
             user.startTime = Date.now()
-            return user.save()
+            await user.save()
         }
+    
+        if(user.attempts >= 5){
+            error.attempts = true
+            return res.status(400).send(error)
+        }
+    
+        const match = await bcrypt.compare(req.body.password, user.password)
+    
+        if(match){
+            return signToken(user, res)
+        }
+        
+        user.loginAttempts += 1
+        await user.save()
 
-        if(user.loginAttempts < 5){
-            user.loginAttempts += 1
-            return user.save()
+        error.password = true
+        res.status(400).send(error)
+
+
+    }catch(e){
+        return res.status(500).end()
+    }
             
-        }else{
-             error.attempts = true
-             res.status(400).json(error)
-        }
-
-    })
-    .then(async(user)=>{
-        try{
-            const match = await bcrypt.compare(req.body.password, user.password);
-            if(match){
-                return signToken(user, res)
-            }
-            
-            error.password = true
-            res.status(400).json(error)
-          
-
-        }catch(e){
-                throw new Error()
-        }
-    })
-    .catch(()=>res.status(500))
-
 
 })
-
-
+    
 
 router.post("/register",(req, res)=>{
     
@@ -95,7 +92,6 @@ router.post("/register",(req, res)=>{
 
 
 
-
 function signToken(user, res){
     jwt.sign({
         userName:user.userName,
@@ -107,7 +103,7 @@ function signToken(user, res){
             httpOnly: (process.env.NODE_ENV == "production")? true : false,
             secure: (process.env.NODE_ENV == "production")? true : false,
         })
-        .json({
+        .send({
             userName:user.userName,
             email:user.email
            })
@@ -115,8 +111,14 @@ function signToken(user, res){
 
 }
 
-router.get("/checkForLoggedInUser", auth ,(req, res)=>{
-    res.json(req.user)
+router.get("/checkForLoggedInUser", (req, res)=>{
+    jwt.verify(req.cookies.token, process.env.SECRET, (error, user)=>{
+        if(error) return res.send(null)
+
+        res.send(user)
+
+        
+    });
 })
 
 

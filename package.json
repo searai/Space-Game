@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"nodemon index.js\" \" npm start --prefix public \" ",
-    "buld": "npm run build --prefix public"
+    "server": "nodemon index.js",
+    "start": "concurrently \"npm run server\" \" npm start --prefix public \" ",
+    "build": "npm run build --prefix public"
   },
   "author": "John OC",
   "license": "ISC",
@@ -16,7 +17,8 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.8.10"
+    "mongoose": "^5.8.10",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "concurrently": "^5.1.0",

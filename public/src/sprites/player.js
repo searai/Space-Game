@@ -1,6 +1,9 @@
 import {Physics}from "phaser"
 import beam from "./beam.js"
 import homingBeam from "./homingBeam.js"
+import {postScore} from "../components/highScore.js"
+import {updateScores} from "../components/highScore.js"
+import store from "../store.js"
 
 
 export default class Player extends Physics.Arcade.Sprite{
@@ -83,7 +86,8 @@ export default class Player extends Physics.Arcade.Sprite{
         .setDisplaySize(50, 50)
         .setVisible(false)
 
-        this.teleportCooldownTimerText = this.scene.add.text(60, 0, `${this.teleportCooldownTimer/1000}`, {fontSize: "40px"})
+        this.teleportCooldownTimerText
+         = this.scene.add.text(60, 0, `${this.teleportCooldownTimer/1000}`, {fontSize: "40px"})
         this.teleportCooldownTimerText
         .setOrigin(0, 0)
         .setVisible(false)
@@ -109,8 +113,20 @@ export default class Player extends Physics.Arcade.Sprite{
         this.setVelocityX(this.velocity*Math.cos(this.rotation))
         this.setVelocityY(this.velocity*Math.sin(this.rotation))
 
-        if(this.health == 0){
-            this.scene.scene.start("GameOverScene")
+        if(this.health <= 0){
+            postScore({
+                user:store.user,
+                score:store.score
+            })
+            .then(res=>{
+                if(res.added){
+                    updateScores()
+                    this.scene.scene.start("GameOverScene",{added: true})
+                }else{
+                    this.scene.scene.start("GameOverScene",{added: false})
+                }
+            })
+    
            
         }
         

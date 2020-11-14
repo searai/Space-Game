@@ -1,53 +1,52 @@
 const express = require("express")
-const path = require("path")
-require("./dbconnection.js")
-const Comment = require("./models/comment.js")
-const change = {val:false}
-const responseArray = []
-require("./longPolling.js")(change, responseArray)
+const router = express.Router()
+const Comment = require("../models/comment.js")
+const commentChange = {val:false}
+const commentResponses = []
 
 
-const server = express()
-server.use(express.json())
-server.use(express.static(path.join(__dirname, "public")))
-
-const port = process.env.PORT || 3000
-
-server.listen(port,()=>{
-  console.log(`server started on port ${port}`)
-})
-
-server.get("/",(req, res)=>{
-  res.sendFile(path.join(__dirname, "public", "index.html"))
-})
-
-
-server.get("/getAllComments", (req, res)=> {
-  Comment.find({}).then(docs=>res.send(docs))
-  .catch(()=>res.status(500))
+router.get("/getAllComments", async(req, res)=> {
+  try{
+    comments = await getAllComments()
+    res.send(comments)
+  }catch(e){
+    res.status(500).end()
+  }
  
 })
 
-server.post("/addComment", (req,res)=>{
+router.post("/addComment", (req,res)=>{
     const comment = new Comment({
         author:req.body.author,
         body:req.body.body
     })
 
     comment.save().then(()=>{
-        change.val = true
+        commentChange = true
         res.status(200).end()
     })
     .catch(()=>res.status(500).end())
 })
 
-
-server.get("/longPolling",(req, res)=>{
-  res.setTimeout(1*60*60*1000,()=>{
-    res.status(408).end()
-   })
-   responseArray.push(res)
-
+router.get("/poll",(req, res)=>{
+  commentResponse.push(res)
 })
 
 
+function getAllComments(){
+  return new Promise((resolve, reject)=>{
+      comment.find({})
+      .then(comments=>resolve(comments))
+      .catch(()=>reject())
+  })
+}
+
+
+
+module.exports = {
+  commentChange,
+  commentRoutes:router,
+  commentResponses,
+  getAllComments
+  
+}

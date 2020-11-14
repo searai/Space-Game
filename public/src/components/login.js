@@ -1,6 +1,6 @@
 import axios from "../axios.js"
 import validator from "validator"
-import loginUser from "./helperFuntions/loginUser.js"
+import {loginUser} from "./auth.js"
 
 let loginError = false
 const loginEmail = document.querySelector("#email-login")
@@ -39,6 +39,7 @@ document.querySelector(".submit-login").addEventListener("click",()=>{
             .then((res)=>{
                 loginEmail.value = ""
                 loginPassword.value = ""
+                console.log(res)
                 loginUser(res.data.userName, res.data.email)
             })
             .catch((e)=>{

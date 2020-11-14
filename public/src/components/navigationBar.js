@@ -1,5 +1,6 @@
 import axios from "../axios.js"
 import profileImage from "../assets/images/login.jpg" 
+import {logoutUser} from "./auth.js"
 
 const imgTag = document.querySelector("#profile-image")
 imgTag.src =  profileImage
@@ -72,6 +73,7 @@ displayLogin.addEventListener("click",()=>{
     game.style.display = "none"
     highscore.style.display = "none"
     profile.style.display = "none"
+
     displayRegister.style.textDecoration = "none"
     displayLogin.style.textDecoration = "underline"
     displayGame.style.textDecoration = "none"
@@ -80,26 +82,17 @@ displayLogin.addEventListener("click",()=>{
 })
 
 displayProfile.addEventListener("click",()=>{
-    register.style.display = "none"
-    login.style.display = "none"
     game.style.display = "none"
     highscore.style.display = "none"
     profile.style.display = "block"
+
+    displayGame.style.textDecoration = "none"
+    displayhighscores.style.textDecoration = "none"
+  
 })
 
 
-logout.addEventListener("click",()=>{
-    axios.get("user/logout").then(()=>{
-        profile.style.display = "none"
-        register.style.display = "block"
-        login.style.display = "none"
-        profileDropdown.style.display = "none"
-        registerButton.style.visibility = "visible"
-        loginButton.style.visibility = "visible"
-        
-    })
-
-})
+logout.addEventListener("click", logoutUser)
 
 
 

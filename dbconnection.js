@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://localhost:27017/spaceGame", {
+mongoose.connect("mongodb://localhost/spaceGame", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false

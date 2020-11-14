@@ -21,7 +21,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite{
         this.setDistanceBetweenEnemies()
 
     }
-    update(){
+    update(time, delta){
         this.targetAngle = Phaser.Math.Angle.BetweenPoints(this.getCenter(), this.scene.player.getCenter())
         this.rotation = Phaser.Math.Angle.RotateTo(this.rotation, this.targetAngle)
         this.setVelocityX(this.velocity*Math.cos(this.rotation))
@@ -40,7 +40,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite{
             this.fire = false
         }
 
-        // this.generateBeam(delta)
+        this.generateBeam(delta)
         this.testForkill()
 
     }
@@ -55,7 +55,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite{
 
     generateBeam(timeInterval){
         this.cumulativeTime  += timeInterval
-        if(this.cumulativeTime > 1000){
+        if(this.cumulativeTime > 2000){
             if(this.fire){
                 new beam(this.scene, this.getRightCenter().x, this.getRightCenter().y, "enemyBeam" , this.rotation)
             }
