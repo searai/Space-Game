@@ -30,7 +30,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "phaser": "^3.21.0",
     "validator": "^12.2.0"
   }
